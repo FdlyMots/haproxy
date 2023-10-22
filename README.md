@@ -1,6 +1,6 @@
 ## INSTALL SCRIPT
 ```
-wget -q -O install.sh 'https://raw.githubusercontent.com/FdlyMots/haproxy/main/install.sh;chmod +x install.sh;bash install.sh
+wget -q -O install.sh 'https://raw.githubusercontent.com/FdlyMots/haproxy/main/install.sh';chmod +x install.sh;bash install.sh
 ```
 
 ## UPDATE SCRIPT
