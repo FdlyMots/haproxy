@@ -801,7 +801,6 @@ clear
 echo "Banner /etc/premium.txt" >>/etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/kyt.txt"@g' /etc/default/dropbear
 
-# Ganti Banner
 wget -O /etc/kyt.txt "${REPO}ssh/issue.net"
 print_success "Fail2ban"
 }
@@ -847,6 +846,15 @@ apt autoremove -y >/dev/null 2>&1
 print_success "ePro WebSocket Proxy"
 }
 
+functiom ins_udpcustom(){
+print_install "Menginstall Udp Custom"
+wget https://raw.githubusercontent.com/Rerechan02/UDP/main/udp.sh && chmod +x udp.sh && ./udp.sh
+
+cd
+rm -rf udp.sh
+print_success "Udp Custom"
+}
+
 function ins_restart(){
 clear
 print_install "Restarting  All Packet"
@@ -880,8 +888,7 @@ rm -f /root/cert.pem
 print_success "All Packet"
 }
 
-#Instal Menu
-function menu(){
+function menus(){
     clear
     print_install "Memasang Menu Packet"
     wget -O ~/menu.zip "${REPO}menu/menu.zip" >/dev/null 2>&1
@@ -1003,9 +1010,10 @@ clear
     ins_backup
     ins_swab
     ins_Fail2ban
+    ins_udpcustom
     ins_epro
     ins_restart
-    menu
+    menus
     profile
     enable_services
 }
@@ -1014,7 +1022,7 @@ echo ""
 history -c
 rm -rf /root/menu
 rm -rf /root/*.zip
-rm -rf /root/*.sh
+rm -rf /root/*.sh 
 rm -rf /root/LICENSE
 rm -rf /root/README.md
 rm -rf /root/domain
@@ -1024,7 +1032,11 @@ secs_to_human "$(($(date +%s) - ${start}))"
 echo ""
 echo -e ""
 sudo hostnamectl set-hostname $username
-echo -e "${green} Script Successfull Installed"
+echo -e "${green} Instalasi Script V1.01 Sukses 😁 "
 echo ""
-read -p "$( echo -e "Press ${YELLOW}[ ${NC}${YELLOW}Enter${NC} ${YELLOW}]${NC} For Reboot") "
+read "${green} Pilih ( Y ) Untuk Reboot / ( N ) Untuk Ke menu ${NC} : " tekan
+if [ "$tekan" == "${tekan#[Yy]}" ] ;then
+menu
+else
 reboot
+fi
