@@ -753,7 +753,7 @@ apt -y install fail2ban > /dev/null 2>&1
 # Instal DDOS Flate
 if [ -d '/usr/local/ddos' ]; then
 	echo; echo; echo "Please un-install the previous version first"
-	exit 0
+
 else
 	mkdir /usr/local/ddos
 fi
@@ -808,7 +808,7 @@ apt autoremove -y >/dev/null 2>&1
 print_success "ePro WebSocket Proxy"
 }
 
-functiom ins_udpcustom(){
+function ins_udpcustom(){
 print_install "Menginstall Udp Custom"
 wget https://raw.githubusercontent.com/Rerechan02/UDP/main/udp.sh && chmod +x udp.sh && ./udp.sh
 
